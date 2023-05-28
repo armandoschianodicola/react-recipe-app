@@ -1,0 +1,21 @@
+$breakpoints: (
+  "base": (min-width: 0),
+  "mobile": (min-width: 480px),
+  "smallTab": (min-width: 720px),
+  "tablet": (min-width: 960px),
+  "desktop": (min-width: 1200px),
+);
+
+@mixin respond-to($input_breakpoints...) {
+  @each $breakpoint in $input_breakpoints {
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media #{inspect(map-get($breakpoints, $breakpoint))} {
+        @content;
+      }
+    } @else {
+      @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+            + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+  }
+  
+}

@@ -18,7 +18,7 @@ export default function Home() {
         setRecipes(response.data);
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log("error", error);
       });
   };
 
@@ -37,9 +37,13 @@ export default function Home() {
 
       <main>
         <h1>Recipes</h1>
-        {recipes && recipes.map((recipe) => (
-          <span>test</span>
-        ))}
+        {recipes.length > 0 ? (
+          recipes.map(
+            (recipe) => {
+              return <Recipe recipe={recipe}/>
+            }
+          )
+        ): <div>No Recipes found</div>}
       </main>
     </>
   );
